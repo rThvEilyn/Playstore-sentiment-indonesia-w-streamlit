@@ -9,3 +9,4 @@ pillow
 wordcloud
 sastrawi
 regex
+string
