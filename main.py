@@ -64,7 +64,7 @@ with tab1:
 
 # Pre-Processing & Labeling
 with tab2:
-    #try:
+    try:
         data_file = st.file_uploader("Upload CSV file",type=["csv"])            
         if data_file is not None:
             df = pd.read_csv(data_file)
@@ -206,8 +206,8 @@ with tab2:
             st.dataframe(df)
             st.download_button(label='Download CSV', data = df.to_csv(index=False, encoding='utf8'), file_name='Labeled_'+url+'.csv')
 
-    #except:
-        #st.write('Select The Correct File')
+    except:
+        st.write('Select The Correct File')
 
 with tab3:
     try:
