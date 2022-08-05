@@ -221,7 +221,7 @@ with tab2:
         st.write('Select The Correct File')
 
 with tab3:
-    #try:
+    try:
         data_file = st.file_uploader("Upload Labeled CSV file",type=["csv"])            
         if data_file is not None:
             df = pd.read_csv(data_file)
@@ -330,5 +330,5 @@ with tab3:
                     st.caption('')
                 st.spinner(text="In progress...")
 
-    #except:
-        #st.write('Select The Correct File')
+    except:
+        st.write('Select The Correct File')
