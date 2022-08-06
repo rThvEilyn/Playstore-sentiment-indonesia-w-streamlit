@@ -21,7 +21,7 @@ def main():
     with st.sidebar:
         st.header('Sentiment Analisis Aplikasi Google Play Store')
         st.image(Image.open('sentiment-analysis.webp'))
-        st.caption('© rizkyMahendra 2022')
+        st.caption('Copyright © 2022 Rizky_mahendra.')
 
     # make tabs for Menu
     tab1,tab2,tab3 = st.tabs(["Scraping","Pre-Processing & Labeling","Visualisi Data"])
