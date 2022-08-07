@@ -24,7 +24,7 @@ def main():
         st.caption('Copyright © 2022 Rizky_mahendra.')
 
     # make tabs for Menu
-    tab1,tab2,tab3 = st.tabs(["Scraping","Pre-Processing & Labeling","Visualisi Data"])
+    tab1,tab2,tab3,tab4 = st.tabs(["Scraping","Pre-Processing & Labeling","Visualisi Data","Model Evaluasi"])
 
     # Scraping Data
     with tab1:
