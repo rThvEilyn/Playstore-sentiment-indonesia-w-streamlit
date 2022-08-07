@@ -331,5 +331,58 @@ def main():
         except:
             st.write('Select The Correct File')
 
+    with tab4:
+        #try:
+            data_file = st.file_uploader("Upload labeled CSV file",type=["csv"])        
+            if data_file is not None :
+                df = pd.read_csv(data_file)
+                st.dataframe(df)
+
+                proseseval = st.button('Start processs')
+
+                if "evalmodel" not in st.session_state:
+                    st.session_state.evalmodel = False
+
+                def callback():
+                    st.session_state.evalmodel = False
+
+                if proseseval or st.session_state.evalmodel:
+                    st.session_state.evalmodel = True
+
+                    st.write("\n Counting SVM Accuracy...")
+                    
+                    def score_sentiment(score):
+                        if score == 'positive':
+                            return 0
+                        elif score == 'negative':
+                            return -1
+                        else:
+                            return 1
+
+                    biner = df['sentiment'].apply(score_sentiment)    
+
+                    X_train, X_test, Y_train, Y_test = train_test_split(df['text_clean'], biner, test_size=0.2, stratify=biner, random_state=42)
+
+                    vectorizer = TfidfVectorizer()
+                    X_train = vectorizer.fit_transform(X_train)
+                    X_test = vectorizer.transform(X_test)
+
+                    clfsvm = svm.SVC(kernel="linear")
+                    clfsvm.fit(X_train,Y_train)
+                    predict = clfsvm.predict(X_test)
+
+                    st.write("SVM Accuracy score  -> ", accuracy_score(predict, Y_test)*100)
+                    st.write("SVM Recall Score    -> ", recall_score(predict, Y_test, average='macro')*100)
+                    st.write("SVM Precision score -> ", precision_score(predict, Y_test, average='macro')*100)
+                    st.write("SVM f1 score        -> ", f1_score(predict, Y_test, average='macro')*100)
+                    st.write("===========================================================")
+                    st.write('confusion matrix', confusion_matrix(predict, Y_test))
+                    st.write("===========================================================")
+                    st.text('classification report : \n'+ classification_report(predict, Y_test, zero_division=0))
+                    st.write("===========================================================")
+
+        #except:
+            #st.write('errr')
+
 if __name__ == '__main__':
     main()
