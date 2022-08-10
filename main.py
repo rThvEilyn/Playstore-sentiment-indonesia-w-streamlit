@@ -12,8 +12,6 @@ from nltk.tokenize import word_tokenize
 from Sastrawi.Stemmer.StemmerFactory import StemmerFactory
 #import seaborn as sns
 import matplotlib.pyplot as plt
-from collections import Counter
-from plotly import graph_objs as go
 from PIL import Image
 from wordcloud import WordCloud, STOPWORDS
 from sklearn import svm
@@ -333,26 +331,6 @@ def main():
                 except:
                     st.caption('')
                 
-                
-                topic_words = [ z.lower() for y in
-                                [ x.split() for x in df[df['sentiment']=='positive'] if isinstance(x, str)]
-                                for z in y]
-                word_count_dict = dict(Counter(topic_words))
-                popular_words = sorted(word_count_dict, key = word_count_dict.get, reverse = True)
-                popular_words_nonstop = [w for w in popular_words if w not in stopwords.words("indonesian")]
-                plt.barh(range(10), [word_count_dict[w] for w in reversed(popular_words_nonstop[0:10])])
-                plt.yticks([x + 0.5 for x in range(10)], reversed(popular_words_nonstop[0:10]))
-                plt.title("Popular Words in Kaggle Forum Topics")
-                st.pyplot()
-                
-                fig = go.Figure(go.Funnelarea(
-                    text =temp.sentiment,
-                    values = temp.content,
-                    title = {"position": "top center", "text": "Funnel-Chart of Sentiment Distribution"}
-                    ))
-                st.pyplot(fig)
-                
-
         except:
             st.write('Select The Correct File')
 
