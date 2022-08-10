@@ -275,7 +275,7 @@ def main():
                     ax.axis('off')
                     st.pyplot(fig)
                 except:
-                    st.write('')
+                    st.write(' ')
 
                 col1,col2 = st.columns(2)
                 with col1:
