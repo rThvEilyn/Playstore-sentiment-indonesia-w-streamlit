@@ -333,7 +333,7 @@ def main():
                 
                 try:
                     topic_words = [ z.lower() for y in
-                                    [ x.split() for x in df['docPositive'] if isinstance(x, str)]
+                                    [ x.split() for x in docPosotive if isinstance(x, str)]
                                     for z in y]
                     word_count_dict = dict(Counter(topic_words))
                     popular_words = sorted(word_count_dict, key = word_count_dict.get, reverse = True)
