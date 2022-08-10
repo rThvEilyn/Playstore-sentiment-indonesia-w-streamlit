@@ -12,6 +12,7 @@ from nltk.tokenize import word_tokenize
 from Sastrawi.Stemmer.StemmerFactory import StemmerFactory
 #import seaborn as sns
 import matplotlib.pyplot as plt
+from collections import Counter
 from PIL import Image
 from wordcloud import WordCloud, STOPWORDS
 from sklearn import svm
@@ -335,7 +336,7 @@ def main():
                 topic_words = [ z.lower() for y in
                                 [ x.split() for x in docPosotive if isinstance(x, str)]
                                 for z in y]
-                word_count_dict = dict(Counter(topic_words))
+                word_count_dict = dict(Counter(docPosotive))
                 popular_words = sorted(word_count_dict, key = word_count_dict.get, reverse = True)
                 popular_words_nonstop = [w for w in popular_words if w not in stopwords.words("indonesian")]
                 plt.barh(range(10), [word_count_dict[w] for w in reversed(popular_words_nonstop[0:10])])
