@@ -344,6 +344,13 @@ def main():
                 plt.title("Popular Words in Kaggle Forum Topics")
                 st.pyplot()
                 
+                fig = go.Figure(go.Funnelarea(
+                    text =temp.sentiment,
+                    values = temp.content,
+                title = {"position": "top center", "text": "Funnel-Chart of Sentiment Distribution"}
+                ))
+fig.show()
+                
 
         except:
             st.write('Select The Correct File')
