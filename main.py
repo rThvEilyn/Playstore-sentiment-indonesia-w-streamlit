@@ -13,6 +13,7 @@ from Sastrawi.Stemmer.StemmerFactory import StemmerFactory
 #import seaborn as sns
 import matplotlib.pyplot as plt
 from collections import Counter
+from plotly import graph_objs as go
 from PIL import Image
 from wordcloud import WordCloud, STOPWORDS
 from sklearn import svm
