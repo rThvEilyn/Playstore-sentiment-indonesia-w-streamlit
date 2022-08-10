@@ -347,9 +347,9 @@ def main():
                 fig = go.Figure(go.Funnelarea(
                     text =temp.sentiment,
                     values = temp.content,
-                title = {"position": "top center", "text": "Funnel-Chart of Sentiment Distribution"}
-                ))
-fig.show()
+                    title = {"position": "top center", "text": "Funnel-Chart of Sentiment Distribution"}
+                    ))
+                st.pyplot(fig)
                 
 
         except:
