@@ -334,9 +334,9 @@ def main():
                 
                 
                 topic_words = [ z.lower() for y in
-                                [ x.split() for x in docPosotive if isinstance(x, str)]
+                                [ x.split() for x in df[df['sentiment']=='positive'] if isinstance(x, str)]
                                 for z in y]
-                word_count_dict = dict(Counter(docPosotive))
+                word_count_dict = dict(Counter(topic_words))
                 popular_words = sorted(word_count_dict, key = word_count_dict.get, reverse = True)
                 popular_words_nonstop = [w for w in popular_words if w not in stopwords.words("indonesian")]
                 plt.barh(range(10), [word_count_dict[w] for w in reversed(popular_words_nonstop[0:10])])
