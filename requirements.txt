@@ -11,3 +11,4 @@ sastrawi
 regex
 svm
 openpyxl
+plotly
