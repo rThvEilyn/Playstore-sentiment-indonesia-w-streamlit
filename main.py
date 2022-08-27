@@ -279,30 +279,29 @@ def main():
 
                 col1,col2 = st.columns(2)
                 with col1:
-                    try:
-                        st.write('WordCloud Positive')
-                        train_s0 = df[df["sentiment"] == 'positive']
-                        text = " ".join((word for word in train_s0["text_clean"]))
-                        wordcloud = WordCloud(stopwords=STOPWORDS, background_color='black', width=500, height=450,colormap='Blues', mode='RGBA').generate(text)
-                        fig, ax = plt.subplots(1,figsize=(13, 13))
-                        ax.imshow(wordcloud, interpolation = 'bilinear')
-                        plt.axis('off')
-                        st.pyplot(fig)
-                    except:
-                        st.write('tidak ada sentiment positif pada data')
+                try:
+                    st.write('WordCloud Positive')
+                    train_s0 = df[df["sentiment"] == 'positive']
+                    text = " ".join((word for word in train_s0["text_clean"]))
+                    wordcloud = WordCloud(stopwords=STOPWORDS, background_color='black', width=500, height=450,colormap='Blues', mode='RGBA').generate(text)
+                    fig, ax = plt.subplots(1,figsize=(13, 13))
+                    ax.imshow(wordcloud, interpolation = 'bilinear')
+                    plt.axis('off')
+                    st.pyplot(fig)
+                except:
+                    st.write('tidak ada sentiment positif pada data')
 
-                with col2:
-                    try:
-                        st.write('WordCloud Negative')  
-                        train_s0 = df[df["sentiment"] == 'negative']
-                        text = " ".join((word for word in train_s0["text_clean"]))
-                        wordcloud = WordCloud(stopwords=STOPWORDS, background_color='black', width=500, height=450,colormap='Reds', mode='RGBA').generate(text)
-                        fig, ax = plt.subplots(1,figsize=(13, 13))
-                        ax.imshow(wordcloud, interpolation = 'bilinear')
-                        plt.axis('off')
-                        st.pyplot(fig)
-                    except:
-                        st.write('tidak ada sentiment negatif pada data')
+                try:
+                    st.write('WordCloud Negative')  
+                    train_s0 = df[df["sentiment"] == 'negative']
+                    text = " ".join((word for word in train_s0["text_clean"]))
+                    wordcloud = WordCloud(stopwords=STOPWORDS, background_color='black', width=500, height=450,colormap='Reds', mode='RGBA').generate(text)
+                    fig, ax = plt.subplots(1,figsize=(13, 13))
+                    ax.imshow(wordcloud, interpolation = 'bilinear')
+                    plt.axis('off')
+                    st.pyplot(fig)
+                except:
+                    st.write('tidak ada sentiment negatif pada data')
 
                 try:    
                     st.write('Pie Chart')
