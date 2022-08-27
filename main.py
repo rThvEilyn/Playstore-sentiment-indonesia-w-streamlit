@@ -25,7 +25,7 @@ def main():
     with st.sidebar:
         st.header('Sentiment Analisis Aplikasi Google Play Store')
         st.image(Image.open('sentiment-analysis.webp'))
-        st.caption('Copyright © 2022 Rizky_mahendra.')
+        st.caption('© rizkyMahendra 2022')
 
     # make tabs for Menu
     tab1,tab2,tab3,tab4 = st.tabs(["Scraping","Pre-Processing & Labeling","Visualisi Data","Model Evaluasi"])
@@ -330,18 +330,42 @@ def main():
                     pie_chart(label, count_data, "status")
                 except:
                     st.caption('')
-                
+                st.spinner(text="In progress...")
+
+                try:
+                    st.write('Word Frequency')
+                    top = 11
+                    a = df['text_clean'].str.cat(sep=' ')
+                    words = nltk.tokenize.word_tokenize(a)
+                    Word_dist = nltk.FreqDist(words)
+                    rslt = pd.DataFrame(Word_dist.most_common(top), columns=['Word', 'Frequency'])
+                    
+                    count = rslt['Frequency']
+
+                    fig, x = plt.subplots(1,1,figsize=(11,8))
+                    # create bar plot
+                    plt.bar(rslt['Word'], count, color=['royalblue'])
+
+                    plt.xlabel('\nKata', size=14)
+                    plt.ylabel('\nFrekuensi Kata', size=14)
+                    plt.title('Kata yang sering Keluar \n', size=16)
+                    st.pyplot(fig)
+
+                except:
+                    st.write('error')
+
+
         except:
             st.write('Select The Correct File')
 
     with tab4:
-        #try:
+        try:
             data_file = st.file_uploader("Upload labeled CSV file",type=["csv"])        
             if data_file is not None :
                 df = pd.read_csv(data_file)
                 st.dataframe(df)
 
-                proseseval = st.button('Start evaluasi model')
+                proseseval = st.button('Start processs')
 
                 if "evalmodel" not in st.session_state:
                     st.session_state.evalmodel = False
@@ -379,13 +403,13 @@ def main():
                     st.write("SVM Precision score -> ", precision_score(predict, Y_test, average='macro')*100)
                     st.write("SVM f1 score        -> ", f1_score(predict, Y_test, average='macro')*100)
                     st.write("===========================================================")
-                    st.write('confusion matrix', confusion_matrix(predict, Y_test))
+                    st.write('confusion matrix : \n', confusion_matrix(predict, Y_test))
                     st.write("===========================================================")
                     st.text('classification report : \n'+ classification_report(predict, Y_test, zero_division=0))
                     st.write("===========================================================")
 
-        #except:
-            #st.write('errr')
+        except:
+            st.write('Dataset terlalu sedikit')
 
 if __name__ == '__main__':
     main()
