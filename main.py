@@ -277,8 +277,6 @@ def main():
                 except:
                     st.write(' ')
 
-                col1,col2 = st.columns(2)
-                with col1:
                 try:
                     st.write('WordCloud Positive')
                     train_s0 = df[df["sentiment"] == 'positive']
