@@ -281,8 +281,9 @@ def main():
                     st.write('WordCloud Positive')
                     train_s0 = df[df["sentiment"] == 'positive']
                     text = " ".join((word for word in train_s0["text_clean"]))
-                    wordcloud = WordCloud(stopwords=STOPWORDS, background_color='black', width=500, height=450,colormap='Blues', mode='RGBA').generate(text)
+                    wordcloud = WordCloud(stopwords=STOPWORDS, background_color='black', width=700, height=400,colormap='Blues', mode='RGBA').generate(text)
                     fig, ax = plt.subplots(1,figsize=(13, 13))
+                    ax.set_title('WordCloud Positive', fontsize = 18)
                     ax.imshow(wordcloud, interpolation = 'bilinear')
                     plt.axis('off')
                     st.pyplot(fig)
@@ -293,8 +294,9 @@ def main():
                     st.write('WordCloud Negative')  
                     train_s0 = df[df["sentiment"] == 'negative']
                     text = " ".join((word for word in train_s0["text_clean"]))
-                    wordcloud = WordCloud(stopwords=STOPWORDS, background_color='black', width=500, height=450,colormap='Reds', mode='RGBA').generate(text)
+                    wordcloud = WordCloud(stopwords=STOPWORDS, background_color='black', width=700, height=400,colormap='Reds', mode='RGBA').generate(text)
                     fig, ax = plt.subplots(1,figsize=(13, 13))
+                    ax.set_title('WordCloud Negative', fontsize = 18)
                     ax.imshow(wordcloud, interpolation = 'bilinear')
                     plt.axis('off')
                     st.pyplot(fig)
