@@ -233,24 +233,7 @@ def main():
                     docPositive = df[df['sentiment']=='positive'].reset_index(drop=True)
                     docNegative = df[df['sentiment']=='negative'].reset_index(drop=True)
                     docNeutral = df[df['sentiment']=='neutral'].reset_index(drop=True)
-                
                     
-                    st.write("========================================================================================")
-                    st.write('Document Positive Sentiment')
-                    st.caption(f"Positive = {positif}, {docPositive.shape[0]/df.shape[0]*100} % ")
-                    st.dataframe(docPositive)
-                   
-                    st.write("========================================================================================")
-                    st.write('Document Negative Sentiment')
-                    st.caption(f"Negative = {negatif}, {docNegative.shape[0]/df.shape[0]*100} % ")
-                    st.dataframe(docNegative)
-                   
-                    st.write("========================================================================================")            
-                    st.write('Document Neutral Sentiment')
-                    st.caption(f"Neutral = {netral}, {docNeutral.shape[0]/df.shape[0]*100} % ")
-                    st.dataframe(docNeutral)
-
-                    st.write("========================================================================================")
                     try:
                         text = " ".join(df['text_clean'])
                         wordcloud = WordCloud(width = 600, height = 400, background_color = 'black', min_font_size = 10).generate(text)
@@ -263,7 +246,11 @@ def main():
                         st.pyplot(fig)
                     except:
                         st.write(' ')
-
+                    
+                    st.write("========================================================================================")
+                    st.write('Positive Sentiment')
+                    st.caption(f"Positive = {positif}, {docPositive.shape[0]/df.shape[0]*100} % ")
+                    st.dataframe(docPositive)
                     try:
                         st.write('WordCloud Positive')
                         train_s0 = df[df["sentiment"] == 'positive']
@@ -276,7 +263,11 @@ def main():
                         st.pyplot(fig)
                     except:
                         st.write('tidak ada sentiment positif pada data')
-
+                        
+                    st.write("========================================================================================")
+                    st.write('Negative Sentiment')
+                    st.caption(f"Negative = {negatif}, {docNegative.shape[0]/df.shape[0]*100} % ")
+                    st.dataframe(docNegative)
                     try:
                         st.write('WordCloud Negative')  
                         train_s0 = df[df["sentiment"] == 'negative']
@@ -289,7 +280,25 @@ def main():
                         st.pyplot(fig)
                     except:
                         st.write('tidak ada sentiment negatif pada data')
+                        
+                    st.write("========================================================================================")            
+                    st.write('Document Neutral Sentiment')
+                    st.caption(f"Neutral = {netral}, {docNeutral.shape[0]/df.shape[0]*100} % ")
+                    st.dataframe(docNeutral)
+                    try:
+                        st.write('WordCloud Netral')  
+                        train_s0 = df[df["sentiment"] == 'neutral']
+                        text = " ".join((word for word in train_s0["text_clean"]))
+                        wordcloud = WordCloud(stopwords=STOPWORDS, background_color='black', width=700, height=400,colormap='Reds', mode='RGBA').generate(text)
+                        fig, ax = plt.subplots(1,figsize=(13, 13))
+                        ax.set_title('WordCloud Negative', fontsize = 18)
+                        ax.imshow(wordcloud, interpolation = 'bilinear')
+                        plt.axis('off')
+                        st.pyplot(fig)
+                    except:
+                        st.write('tidak ada sentiment negatif pada data')
 
+                    st.write("========================================================================================")
                     try:    
                         st.write('Pie Chart')
                         def pie_chart(label, data, legend_title):
