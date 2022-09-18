@@ -289,7 +289,7 @@ def main():
                         st.write('WordCloud Netral')  
                         train_s0 = df[df["sentiment"] == 'neutral']
                         text = " ".join((word for word in train_s0["text_clean"]))
-                        wordcloud = WordCloud(stopwords=STOPWORDS, background_color='blues', width=700, height=400,colormap='white', mode='RGBA').generate(text)
+                        wordcloud = WordCloud(stopwords=STOPWORDS, background_color='white', width=700, height=400).generate(text)
                         fig, ax = plt.subplots(1,figsize=(13, 13))
                         ax.set_title('WordCloud Negative', fontsize = 18)
                         ax.imshow(wordcloud, interpolation = 'bilinear')
