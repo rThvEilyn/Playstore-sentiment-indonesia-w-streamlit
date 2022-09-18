@@ -236,7 +236,7 @@ def main():
                     
                     try:
                         text = " ".join(df['text_clean'])
-                        wordcloud = WordCloud(width = 600, height = 400, background_color = 'black', min_font_size = 10).generate(text)
+                        wordcloud = WordCloud(width = 600, height = 400, background_color = 'cyan', min_font_size = 10).generate(text)
                         fig, ax = plt.subplots(figsize = (8, 6))
                         ax.set_title('WordCloud of Comment Data', fontsize = 18)
                         ax.grid(False)
