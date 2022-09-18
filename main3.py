@@ -234,22 +234,21 @@ def main():
                     docNegative = df[df['sentiment']=='negative'].reset_index(drop=True)
                     docNeutral = df[df['sentiment']=='neutral'].reset_index(drop=True)
                 
-                    option = st.radio('ingin lihat data apa? ',['Positive','Negative','Neutral'])
-                    if option == 'Positive':
-                        st.write("========================================================================================")
-                        st.write('Document Positive Sentiment')
-                        st.caption(f"Positive = {positif}, {docPositive.shape[0]/df.shape[0]*100} % ")
-                        st.dataframe(docPositive)
-                    elif option == 'Negative':
-                        st.write("========================================================================================")
-                        st.write('Document Negative Sentiment')
-                        st.caption(f"Negative = {negatif}, {docNegative.shape[0]/df.shape[0]*100} % ")
-                        st.dataframe(docNegative)
-                    else:
-                        st.write("========================================================================================")            
-                        st.write('Document Neutral Sentiment')
-                        st.caption(f"Neutral = {netral}, {docNeutral.shape[0]/df.shape[0]*100} % ")
-                        st.dataframe(docNeutral)
+                    
+                    st.write("========================================================================================")
+                    st.write('Document Positive Sentiment')
+                    st.caption(f"Positive = {positif}, {docPositive.shape[0]/df.shape[0]*100} % ")
+                    st.dataframe(docPositive)
+                   
+                    st.write("========================================================================================")
+                    st.write('Document Negative Sentiment')
+                    st.caption(f"Negative = {negatif}, {docNegative.shape[0]/df.shape[0]*100} % ")
+                    st.dataframe(docNegative)
+                   
+                    st.write("========================================================================================")            
+                    st.write('Document Neutral Sentiment')
+                    st.caption(f"Neutral = {netral}, {docNeutral.shape[0]/df.shape[0]*100} % ")
+                    st.dataframe(docNeutral)
 
                     st.write("========================================================================================")
                     try:
