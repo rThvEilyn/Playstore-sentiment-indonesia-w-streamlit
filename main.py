@@ -34,7 +34,7 @@ def main():
     with tab1:
         with st.form(key='my-form'):
             url = st.text_input('Enter Link Apps')
-            counts = st.number_input('amount of data', min_value=1 ,step=1)
+            counts = st.number_input('amount of data', min_value=50 ,step=1)
             submit = st.form_submit_button('Submit')
 
         if "submits" not in st.session_state:
